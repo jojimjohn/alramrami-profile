@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Al Ramrami - Our Technology</title>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --deep-navy: #0D1B2A;
+            --ocean-blue: #1B4965;
+            --teal: #2E8B7B;
+            --emerald: #2A9D5C;
+            --gold: #D4A853;
+            --cream: #F8F6F2;
+            --white: #FFFFFF;
+        }
+        .slide {
+            width: 1280px;
+            height: 720px;
+            background: var(--white);
+            position: relative;
+            overflow: hidden;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+        .left-panel {
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 480px;
+            background: linear-gradient(180deg, #0D2137 0%, #1B4965 100%);
+            padding: 60px;
+            display: flex;
+            flex-direction: column;
+        }
+        .section-label {
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--gold);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 16px;
+        }
+        .section-title {
+            font-family: 'DM Serif Display', serif;
+            font-size: 48px;
+            color: var(--white);
+            line-height: 1.15;
+            margin-bottom: 24px;
+        }
+        .section-title span {
+            color: var(--teal);
+        }
+        .intro-text {
+            font-size: 15px;
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.7;
+            margin-bottom: 40px;
+        }
+        .key-stat {
+            margin-top: auto;
+            padding-top: 32px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .stat-label {
+            font-size: 11px;
+            font-weight: 600;
+            color: rgba(255, 255, 255, 0.5);
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+        }
+        .stat-value {
+            font-family: 'DM Serif Display', serif;
+            font-size: 56px;
+            color: var(--teal);
+            line-height: 1;
+        }
+        .stat-desc {
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.6);
+            margin-top: 8px;
+        }
+        .right-content {
+            position: absolute;
+            left: 520px;
+            top: 60px;
+            right: 60px;
+            bottom: 60px;
+        }
+        .tech-feature {
+            padding: 28px 0;
+            border-bottom: 1px solid #E2E8F0;
+        }
+        .tech-feature:first-child {
+            padding-top: 0;
+        }
+        .tech-feature:last-child {
+            border-bottom: none;
+        }
+        .tech-header {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 12px;
+        }
+        .tech-icon {
+            width: 48px;
+            height: 48px;
+            background: rgba(46, 139, 123, 0.1);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .tech-feature:nth-child(2) .tech-icon { background: rgba(42, 157, 92, 0.1); }
+        .tech-feature:nth-child(3) .tech-icon { background: rgba(27, 73, 101, 0.1); }
+        .tech-feature:nth-child(4) .tech-icon { background: rgba(212, 168, 83, 0.1); }
+        .tech-icon svg {
+            width: 24px;
+            height: 24px;
+            stroke: var(--teal);
+        }
+        .tech-feature:nth-child(2) .tech-icon svg { stroke: var(--emerald); }
+        .tech-feature:nth-child(3) .tech-icon svg { stroke: var(--ocean-blue); }
+        .tech-feature:nth-child(4) .tech-icon svg { stroke: var(--gold); }
+        .tech-title {
+            font-family: 'DM Serif Display', serif;
+            font-size: 22px;
+            color: var(--deep-navy);
+        }
+        .tech-desc {
+            font-size: 14px;
+            color: #64748B;
+            line-height: 1.7;
+            padding-left: 64px;
+        }
+        .bottom-bar {
+            position: absolute;
+            bottom: 0;
+            left: 480px;
+            right: 0;
+            padding: 20px 60px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid #E2E8F0;
+        }
+        .company-name {
+            font-size: 12px;
+            font-weight: 500;
+            color: #94A3B8;
+            letter-spacing: 1px;
+        }
+        .page-number {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--deep-navy);
+        }
+        .page-number span {
+            color: #A0AEC0;
+        }
+        .corner-accent {
+            position: absolute;
+            right: 0;
+            top: 0;
+            width: 100px;
+            height: 100px;
+            background: linear-gradient(135deg, var(--teal) 0%, var(--emerald) 100%);
+            clip-path: polygon(100% 0, 0 0, 100% 100%);
+        }
+    </style>
+</head>
+<body>
+    <div class="slide">
+        <div class="left-panel">
+            <div class="section-label">06 — Innovation</div>
+            <h2 class="section-title">What Makes Us <span>Unique</span></h2>
+            <p class="intro-text">
+                Our proprietary nano-engineered bubble technology represents a paradigm shift in wastewater treatment, delivering unmatched efficiency and environmental performance.
+            </p>
+            <div class="key-stat">
+                <div class="stat-label">Treatment Efficiency</div>
+                <div class="stat-value">95%+</div>
+                <div class="stat-desc">Contaminant removal rate</div>
+            </div>
+        </div>
+
+        <div class="corner-accent"></div>
+
+        <div class="right-content">
+            <div class="tech-feature">
+                <div class="tech-header">
+                    <div class="tech-icon">
+                        <svg fill="none" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9.75 3.104v5.714a2.25 2.25 0 01-.659 1.591L5 14.5M9.75 3.104c-.251.023-.501.05-.75.082m.75-.082a24.301 24.301 0 014.5 0m0 0v5.714c0 .597.237 1.17.659 1.591L19.8 15.3M14.25 3.104c.251.023.501.05.75.082M19.8 15.3l-1.57.393A9.065 9.065 0 0112 15a9.065 9.065 0 00-6.23-.693L5 14.5m14.8.8l1.402 1.402c1.232 1.232.65 3.318-1.067 3.611A48.309 48.309 0 0112 21c-2.773 0-5.491-.235-8.135-.687-1.718-.293-2.3-2.379-1.067-3.61L5 14.5" /></svg>
+                    </div>
+                    <h3 class="tech-title">Nano-Engineered Bubbles</h3>
+                </div>
+                <p class="tech-desc">Microscopic bubble technology creates massive surface area for superior contaminant interaction and removal, dramatically improving treatment efficiency.</p>
+            </div>
+
+            <div class="tech-feature">
+                <div class="tech-header">
+                    <div class="tech-icon">
+                        <svg fill="none" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z" /></svg>
+                    </div>
+                    <h3 class="tech-title">Electric Treatment Process</h3>
+                </div>
+                <p class="tech-desc">Clean, efficient electric-powered operation eliminates emissions and reduces operational complexity while maintaining peak performance.</p>
+            </div>
+
+            <div class="tech-feature">
+                <div class="tech-header">
+                    <div class="tech-icon">
+                        <svg fill="none" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 18.75a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h6m-9 0H3.375a1.125 1.125 0 01-1.125-1.125V14.25m17.25 4.5a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h1.125c.621 0 1.129-.504 1.09-1.124a17.902 17.902 0 00-3.213-9.193 2.056 2.056 0 00-1.58-.86H14.25M16.5 18.75h-2.25m0-11.177v-.958c0-.568-.422-1.048-.987-1.106a48.554 48.554 0 00-10.026 0 1.106 1.106 0 00-.987 1.106v7.635m12-6.677v6.677m0 4.5v-4.5m0 0h-12" /></svg>
+                    </div>
+                    <h3 class="tech-title">Mobile Deployment</h3>
+                </div>
+                <p class="tech-desc">Fully transportable treatment units can be deployed to any location within hours, providing flexibility for temporary or permanent installations.</p>
+            </div>
+
+            <div class="tech-feature">
+                <div class="tech-header">
+                    <div class="tech-icon">
+                        <svg fill="none" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 12c0-1.232-.046-2.453-.138-3.662a4.006 4.006 0 00-3.7-3.7 48.678 48.678 0 00-7.324 0 4.006 4.006 0 00-3.7 3.7c-.017.22-.032.441-.046.662M19.5 12l3-3m-3 3l-3-3m-12 3c0 1.232.046 2.453.138 3.662a4.006 4.006 0 003.7 3.7 48.656 48.656 0 007.324 0 4.006 4.006 0 003.7-3.7c.017-.22.032-.441.046-.662M4.5 12l3 3m-3-3l-3 3" /></svg>
+                    </div>
+                    <h3 class="tech-title">Circular Water Economy</h3>
+                </div>
+                <p class="tech-desc">Treated water meets standards for reuse in irrigation, industrial processes, and other applications, supporting sustainable water management.</p>
+            </div>
+        </div>
+
+        <div class="bottom-bar">
+            <span class="company-name">Al Ramrami Trading Enterprises</span>
+            <span class="page-number">07 <span>/ 12</span></span>
+        </div>
+    </div>
+</body>
+</html>

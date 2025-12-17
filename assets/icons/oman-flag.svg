@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 300" width="48" height="24">
+  <!-- Oman National Flag -->
+  <!-- Red vertical stripe on left -->
+  <rect x="0" y="0" width="100" height="300" fill="#DB161B"/>
+
+  <!-- White horizontal stripe (top) -->
+  <rect x="100" y="0" width="500" height="100" fill="#FFFFFF"/>
+
+  <!-- Red horizontal stripe (middle) -->
+  <rect x="100" y="100" width="500" height="100" fill="#DB161B"/>
+
+  <!-- Green horizontal stripe (bottom) -->
+  <rect x="100" y="200" width="500" height="100" fill="#008000"/>
+
+  <!-- National Emblem (simplified) in red stripe -->
+  <g transform="translate(50, 150)" fill="#FFFFFF">
+    <!-- Crossed swords -->
+    <path d="M-25,-40 L0,-15 L25,-40 M0,-15 L0,40" stroke="#FFFFFF" stroke-width="3" fill="none"/>
+    <!-- Khanjar (dagger) -->
+    <ellipse cx="0" cy="-20" rx="8" ry="12"/>
+    <path d="M-5,-8 Q0,5 5,-8" stroke="#FFFFFF" stroke-width="2" fill="none"/>
+  </g>
+</svg>

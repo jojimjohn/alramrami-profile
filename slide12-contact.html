@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Al Ramrami - Contact Us</title>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --deep-navy: #0D1B2A;
+            --ocean-blue: #1B4965;
+            --teal: #2E8B7B;
+            --emerald: #2A9D5C;
+            --gold: #D4A853;
+            --cream: #F8F6F2;
+            --white: #FFFFFF;
+        }
+        .slide {
+            width: 1280px;
+            height: 720px;
+            background: linear-gradient(135deg, #0D2137 0%, #1B4965 50%, #1A3A4A 100%);
+            position: relative;
+            overflow: hidden;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+        .bg-pattern {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 0% 100%, rgba(46, 139, 123, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 100% 0%, rgba(212, 168, 83, 0.08) 0%, transparent 50%);
+        }
+        .accent-bar {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 6px;
+            background: linear-gradient(90deg, var(--teal) 0%, var(--emerald) 50%, var(--gold) 100%);
+        }
+        .content-wrapper {
+            position: relative;
+            height: 100%;
+            display: flex;
+        }
+        .left-section {
+            flex: 1;
+            padding: 80px 60px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .thank-you {
+            font-family: 'DM Serif Display', serif;
+            font-size: 64px;
+            color: var(--white);
+            margin-bottom: 16px;
+        }
+        .thank-you span {
+            color: var(--teal);
+        }
+        .tagline {
+            font-size: 18px;
+            color: rgba(255, 255, 255, 0.6);
+            margin-bottom: 48px;
+            max-width: 400px;
+            line-height: 1.6;
+        }
+        .cta-text {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--gold);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 24px;
+        }
+        .contact-row {
+            display: flex;
+            gap: 32px;
+        }
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .contact-icon {
+            width: 44px;
+            height: 44px;
+            background: rgba(46, 139, 123, 0.15);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .contact-icon svg {
+            width: 20px;
+            height: 20px;
+            stroke: var(--teal);
+        }
+        .contact-text {
+            font-size: 15px;
+            color: var(--white);
+        }
+        .right-section {
+            width: 480px;
+            background: rgba(255, 255, 255, 0.02);
+            border-left: 1px solid rgba(255, 255, 255, 0.08);
+            padding: 60px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .company-badge {
+            margin-bottom: 40px;
+        }
+        .company-name-large {
+            font-family: 'DM Serif Display', serif;
+            font-size: 32px;
+            color: var(--white);
+            margin-bottom: 8px;
+        }
+        .company-name-large span {
+            display: block;
+            color: var(--teal);
+        }
+        .company-tagline {
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.5);
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+        .info-block {
+            margin-bottom: 28px;
+        }
+        .info-label {
+            font-size: 11px;
+            font-weight: 600;
+            color: var(--gold);
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+        .info-content {
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.6;
+        }
+        .sme-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 16px;
+            background: rgba(212, 168, 83, 0.1);
+            border: 1px solid rgba(212, 168, 83, 0.3);
+            margin-top: 20px;
+        }
+        .sme-icon {
+            width: 28px;
+            height: 28px;
+            background: var(--gold);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .sme-icon svg {
+            width: 14px;
+            height: 14px;
+            stroke: var(--deep-navy);
+        }
+        .sme-text {
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--gold);
+        }
+        .qr-section {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-top: 24px;
+            padding-top: 24px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .qr-code {
+            width: 80px;
+            height: 80px;
+            background: var(--white);
+            padding: 6px;
+            border-radius: 6px;
+        }
+        .qr-code img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+        .qr-text {
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.6);
+            line-height: 1.5;
+        }
+        .qr-text strong {
+            display: block;
+            color: var(--white);
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+        .bottom-bar {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 20px 60px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .copyright {
+            font-size: 11px;
+            color: rgba(255, 255, 255, 0.4);
+        }
+        .page-number {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--white);
+        }
+        .page-number span {
+            color: rgba(255, 255, 255, 0.4);
+        }
+    </style>
+</head>
+<body>
+    <div class="slide">
+        <div class="bg-pattern"></div>
+        <div class="accent-bar"></div>
+        
+        <div class="content-wrapper">
+            <div class="left-section">
+                <h2 class="thank-you">Thank <span>You</span></h2>
+                <p class="tagline">
+                    Let's work together to build a cleaner, more sustainable future for Oman and beyond.
+                </p>
+                
+                <div class="cta-text">Get in Touch</div>
+                
+                <div class="contact-row">
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <svg fill="none" viewBox="0 0 24 24" stroke-width="1.5">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z" />
+                            </svg>
+                        </div>
+                        <span class="contact-text">+968 94144344</span>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <svg fill="none" viewBox="0 0 24 24" stroke-width="1.5">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" />
+                            </svg>
+                        </div>
+                        <span class="contact-text">info@alramrami.com</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="right-section">
+                <div class="company-badge">
+                    <div class="company-name-large">Al Ramrami<span>Trading Enterprises</span></div>
+                    <div class="company-tagline">Environmental Solutions &amp; Innovation</div>
+                </div>
+
+                <div class="info-block">
+                    <div class="info-label">Location</div>
+                    <div class="info-content">
+                        Al Khode, Al Seeb<br>
+                        Muscat, Sultanate of Oman
+                    </div>
+                </div>
+
+                <div class="info-block">
+                    <div class="info-label">Website</div>
+                    <div class="info-content">www.alramrami.com</div>
+                </div>
+
+                <div class="sme-badge">
+                    <div class="sme-icon">
+                        <svg fill="none" viewBox="0 0 24 24" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                    </div>
+                    <span class="sme-text">Registered SME under Riyadah</span>
+                </div>
+
+                <div class="qr-section">
+                    <div class="qr-code">
+                        <img src="qr-code.png" alt="QR Code">
+                    </div>
+                    <div class="qr-text">
+                        <strong>Scan to Visit</strong>
+                        www.alramrami.com
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="bottom-bar">
+            <span class="copyright">© 2025 Al Ramrami Trading Enterprises. All rights reserved.</span>
+            <span class="page-number">12 <span>/ 12</span></span>
+        </div>
+    </div>
+</body>
+</html>

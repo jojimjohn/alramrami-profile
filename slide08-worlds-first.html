@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Al Ramrami - World's First</title>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --deep-navy: #0D1B2A;
+            --ocean-blue: #1B4965;
+            --teal: #2E8B7B;
+            --emerald: #2A9D5C;
+            --gold: #D4A853;
+            --cream: #F8F6F2;
+            --white: #FFFFFF;
+        }
+        .slide {
+            width: 1280px;
+            height: 720px;
+            background: linear-gradient(135deg, #0D2137 0%, #1B4965 50%, #1A3A4A 100%);
+            position: relative;
+            overflow: hidden;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+        .bg-pattern {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background:
+                radial-gradient(circle at 20% 80%, rgba(46, 139, 123, 0.08) 0%, transparent 40%),
+                radial-gradient(circle at 80% 20%, rgba(212, 168, 83, 0.06) 0%, transparent 40%);
+        }
+        .header {
+            padding: 24px 60px 12px 60px;
+            text-align: center;
+        }
+        .badge {
+            display: inline-block;
+            padding: 6px 16px;
+            background: var(--gold);
+            font-size: 10px;
+            font-weight: 700;
+            color: var(--deep-navy);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+        .section-title {
+            font-family: 'DM Serif Display', serif;
+            font-size: 36px;
+            color: var(--white);
+            margin-bottom: 6px;
+        }
+        .section-subtitle {
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.5);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .main-content {
+            padding: 8px 60px;
+        }
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+        }
+        .feature-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            padding: 14px 16px;
+            text-align: center;
+            position: relative;
+        }
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: var(--teal);
+        }
+        .feature-card:nth-child(2)::before { background: var(--emerald); }
+        .feature-card:nth-child(3)::before { background: var(--gold); }
+        .feature-card:nth-child(4)::before { background: var(--ocean-blue); }
+        .feature-card:nth-child(5)::before { background: var(--gold); }
+        .feature-card:nth-child(6)::before { background: var(--teal); }
+        .feature-number {
+            font-family: 'DM Serif Display', serif;
+            font-size: 28px;
+            color: var(--teal);
+            line-height: 1;
+            margin-bottom: 6px;
+        }
+        .feature-card:nth-child(2) .feature-number { color: var(--emerald); }
+        .feature-card:nth-child(3) .feature-number { color: var(--gold); }
+        .feature-card:nth-child(4) .feature-number { color: var(--ocean-blue); }
+        .feature-card:nth-child(5) .feature-number { color: var(--gold); }
+        .feature-card:nth-child(6) .feature-number { color: var(--teal); }
+        .feature-title {
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--white);
+            margin-bottom: 4px;
+            line-height: 1.3;
+        }
+        .feature-desc {
+            font-size: 10px;
+            color: rgba(255, 255, 255, 0.5);
+            line-height: 1.4;
+        }
+        /* Images section */
+        .images-section {
+            padding: 16px 60px 0 60px;
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+        }
+        .image-card {
+            display: inline-block;
+            border-radius: 8px;
+            overflow: hidden;
+            border: 2px solid rgba(255, 255, 255, 0.15);
+        }
+        .image-card img {
+            display: block;
+            height: 160px;
+            width: auto;
+        }
+        .image-card .image-label {
+            padding: 8px 12px;
+            background: rgba(13, 27, 42, 0.95);
+            font-size: 10px;
+            font-weight: 600;
+            color: var(--gold);
+            text-align: center;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .bottom-bar {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 20px 60px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .company-name {
+            font-size: 12px;
+            font-weight: 500;
+            color: rgba(255, 255, 255, 0.4);
+        }
+        .page-number {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--white);
+        }
+        .page-number span {
+            color: rgba(255, 255, 255, 0.4);
+        }
+    </style>
+</head>
+<body>
+    <div class="slide">
+        <div class="bg-pattern"></div>
+
+        <div class="header">
+            <span class="badge">Industry Leading</span>
+            <h2 class="section-title">World's First</h2>
+            <p class="section-subtitle">Pioneering innovations that set new standards in wastewater treatment technology</p>
+        </div>
+
+        <div class="main-content">
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-number">01</div>
+                    <h3 class="feature-title">Mobile Electric ETP</h3>
+                    <p class="feature-desc">First fully mobile electric effluent treatment plant with rapid deployment capability</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-number">02</div>
+                    <h3 class="feature-title">Nano-Bubble Technology</h3>
+                    <p class="feature-desc">Proprietary nano-engineered bubble system for enhanced treatment efficiency</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-number">03</div>
+                    <h3 class="feature-title">Zero Chemical Process</h3>
+                    <p class="feature-desc">Chemical-free treatment achieving superior results without additives</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-number">04</div>
+                    <h3 class="feature-title">Instant Clarity Output</h3>
+                    <p class="feature-desc">Crystal clear treated water within minutes of processing</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-number">05</div>
+                    <h3 class="feature-title">Multi-Industry Adaptable</h3>
+                    <p class="feature-desc">Single system treating 16+ different industry wastewater types</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-number">06</div>
+                    <h3 class="feature-title">Near-Zero Sludge</h3>
+                    <p class="feature-desc">Only 0.02-0.03% dry sludge output, industry's lowest</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Equipment Images -->
+        <div class="images-section">
+            <div class="image-card">
+                <img src="pipes.png" alt="Unique Design">
+                <div class="image-label">Unique Design</div>
+            </div>
+            <div class="image-card">
+                <img src="integrator.png" alt="Smallest Integrator">
+                <div class="image-label">Smallest Integrator</div>
+            </div>
+        </div>
+
+        <div class="bottom-bar">
+            <span class="company-name">Al Ramrami Trading Enterprises</span>
+            <span class="page-number">08 <span>/ 12</span></span>
+        </div>
+    </div>
+</body>
+</html>

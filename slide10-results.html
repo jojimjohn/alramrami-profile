@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Al Ramrami - Treatment Results</title>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --deep-navy: #0D1B2A;
+            --ocean-blue: #1B4965;
+            --teal: #2E8B7B;
+            --emerald: #2A9D5C;
+            --gold: #D4A853;
+            --cream: #F8F6F2;
+            --white: #FFFFFF;
+        }
+        .slide {
+            width: 1280px;
+            height: 720px;
+            background: linear-gradient(135deg, #0D2137 0%, #1B4965 50%, #1A3A4A 100%);
+            position: relative;
+            overflow: hidden;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+        .top-bar {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 6px;
+            background: linear-gradient(90deg, var(--teal) 0%, var(--emerald) 50%, var(--gold) 100%);
+        }
+        .header {
+            padding: 50px 60px 30px 60px;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+        .header-left {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        .section-label {
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--gold);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+        .section-title {
+            font-family: 'DM Serif Display', serif;
+            font-size: 44px;
+            color: var(--white);
+        }
+        .header-badge {
+            padding: 10px 20px;
+            background: rgba(46, 139, 123, 0.15);
+            border: 1px solid var(--teal);
+        }
+        .header-badge span {
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--teal);
+            letter-spacing: 1px;
+        }
+        .main-content {
+            padding: 20px 60px;
+            display: flex;
+            gap: 30px;
+        }
+        .left-content {
+            flex: 1;
+        }
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+        .metric-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            padding: 20px 16px;
+            text-align: center;
+            position: relative;
+        }
+        .metric-card::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: var(--teal);
+        }
+        .metric-card:nth-child(2)::before { background: var(--emerald); }
+        .metric-card:nth-child(3)::before { background: var(--ocean-blue); }
+        .metric-card:nth-child(4)::before { background: var(--gold); }
+        .metric-label {
+            font-size: 10px;
+            font-weight: 600;
+            color: rgba(255, 255, 255, 0.5);
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+        }
+        .metric-value {
+            font-family: 'DM Serif Display', serif;
+            font-size: 40px;
+            color: var(--teal);
+            line-height: 1;
+            margin-bottom: 4px;
+        }
+        .metric-card:nth-child(2) .metric-value { color: var(--emerald); }
+        .metric-card:nth-child(3) .metric-value { color: var(--ocean-blue); }
+        .metric-card:nth-child(4) .metric-value { color: var(--gold); }
+        .metric-unit {
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.6);
+        }
+        .details-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+        .details-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            padding: 18px;
+        }
+        .details-card h3 {
+            font-family: 'DM Serif Display', serif;
+            font-size: 16px;
+            color: var(--white);
+            margin-bottom: 14px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .detail-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+        }
+        .detail-row:last-child {
+            border-bottom: none;
+        }
+        .detail-name {
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.6);
+        }
+        .detail-value {
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--white);
+        }
+        .detail-value.success {
+            color: var(--emerald);
+        }
+        .detail-value.highlight {
+            color: var(--teal);
+        }
+        /* Right side image */
+        .image-section {
+            width: 260px;
+            display: flex;
+            flex-direction: column;
+        }
+        .results-image {
+            display: inline-block;
+            border-radius: 8px;
+            overflow: hidden;
+            border: 2px solid rgba(255, 255, 255, 0.15);
+        }
+        .results-image img {
+            display: block;
+            width: 100%;
+            height: auto;
+        }
+        .image-caption {
+            margin-top: 12px;
+            text-align: center;
+        }
+        .image-caption h4 {
+            font-family: 'DM Serif Display', serif;
+            font-size: 14px;
+            color: var(--white);
+            margin-bottom: 4px;
+        }
+        .image-caption p {
+            font-size: 11px;
+            color: rgba(255, 255, 255, 0.5);
+            line-height: 1.4;
+        }
+        .bottom-bar {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 20px 60px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .company-name {
+            font-size: 12px;
+            font-weight: 500;
+            color: rgba(255, 255, 255, 0.4);
+        }
+        .page-number {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--white);
+        }
+        .page-number span {
+            color: rgba(255, 255, 255, 0.4);
+        }
+    </style>
+</head>
+<body>
+    <div class="slide">
+        <div class="top-bar"></div>
+
+        <div class="header">
+            <div class="header-left">
+                <span class="section-label">09 — Performance</span>
+                <h2 class="section-title">Treatment Results</h2>
+            </div>
+            <div class="header-badge">
+                <span>Verified Performance Data</span>
+            </div>
+        </div>
+
+        <div class="main-content">
+            <div class="left-content">
+                <div class="metrics-grid">
+                    <div class="metric-card">
+                        <div class="metric-label">BOD Reduction</div>
+                        <div class="metric-value">95%</div>
+                        <div class="metric-unit">Average</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-label">COD Reduction</div>
+                        <div class="metric-value">90%</div>
+                        <div class="metric-unit">Average</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-label">TSS Reduction</div>
+                        <div class="metric-value">98%</div>
+                        <div class="metric-unit">Average</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-label">Heavy Metals</div>
+                        <div class="metric-value">100%</div>
+                        <div class="metric-unit">Removal</div>
+                    </div>
+                </div>
+
+                <div class="details-section">
+                    <div class="details-card">
+                        <h3>Key Parameters</h3>
+                        <div class="detail-row">
+                            <span class="detail-name">Oil &amp; Grease</span>
+                            <span class="detail-value success">NIL</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="detail-name">Turbidity</span>
+                            <span class="detail-value highlight">&lt; 5 NTU</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="detail-name">Color</span>
+                            <span class="detail-value success">Crystal Clear</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="detail-name">Odor</span>
+                            <span class="detail-value success">None</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="detail-name">pH Level</span>
+                            <span class="detail-value highlight">6.5 - 8.5</span>
+                        </div>
+                    </div>
+
+                    <div class="details-card">
+                        <h3>Sludge Output</h3>
+                        <div class="detail-row">
+                            <span class="detail-name">Dry Sludge</span>
+                            <span class="detail-value highlight">0.02 - 0.03%</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="detail-name">Sludge Type</span>
+                            <span class="detail-value">Non-hazardous</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="detail-name">Disposal</span>
+                            <span class="detail-value success">Easy handling</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="detail-name">Reuse Potential</span>
+                            <span class="detail-value success">High</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="detail-name">Treatment Time</span>
+                            <span class="detail-value highlight">Minutes</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Results Image on the right -->
+            <div class="image-section">
+                <div class="results-image">
+                    <img src="results-img.png" alt="Treatment Results - Before/After">
+                </div>
+                <div class="image-caption">
+                    <h4>Results Chart</h4>
+                    <p>Treatment performance data across different effluent types</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="bottom-bar">
+            <span class="company-name">Al Ramrami Trading Enterprises</span>
+            <span class="page-number">10 <span>/ 12</span></span>
+        </div>
+    </div>
+</body>
+</html>

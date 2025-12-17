@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Al Ramrami - Treated Samples</title>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --deep-navy: #0D1B2A;
+            --ocean-blue: #1B4965;
+            --teal: #2E8B7B;
+            --emerald: #2A9D5C;
+            --gold: #D4A853;
+            --cream: #F8F6F2;
+            --white: #FFFFFF;
+        }
+        .slide {
+            width: 1280px;
+            height: 720px;
+            background: var(--white);
+            position: relative;
+            overflow: hidden;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+        .header {
+            background: linear-gradient(135deg, #0D2137 0%, #1B4965 100%);
+            padding: 28px 60px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .header-content {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+        }
+        .section-label {
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--gold);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+        .section-title {
+            font-family: 'DM Serif Display', serif;
+            font-size: 32px;
+            color: var(--white);
+        }
+        .main-content {
+            padding: 24px 60px 20px;
+        }
+        .intro-text {
+            font-size: 14px;
+            color: #4A5568;
+            line-height: 1.5;
+            max-width: 800px;
+            margin-bottom: 20px;
+        }
+        .samples-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+        }
+        .sample-card {
+            background: var(--cream);
+            border: 1px solid #E2E8F0;
+            overflow: hidden;
+        }
+        .sample-image {
+            height: 180px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #f0f0f0;
+        }
+        .sample-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .sample-info {
+            padding: 12px 14px;
+            border-top: 1px solid #E2E8F0;
+            text-align: center;
+        }
+        .sample-title {
+            font-family: 'DM Serif Display', serif;
+            font-size: 14px;
+            color: var(--deep-navy);
+            line-height: 1.2;
+        }
+        .bottom-accent {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 6px;
+            background: linear-gradient(90deg, var(--teal) 33%, var(--emerald) 33%, var(--emerald) 66%, var(--gold) 66%);
+        }
+        .bottom-bar {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 20px 60px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid #E2E8F0;
+        }
+        .company-name {
+            font-size: 12px;
+            font-weight: 500;
+            color: #94A3B8;
+            letter-spacing: 1px;
+        }
+        .page-number {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--deep-navy);
+        }
+        .page-number span {
+            color: #A0AEC0;
+        }
+    </style>
+</head>
+<body>
+    <div class="slide">
+        <div class="header">
+            <div class="header-content">
+                <span class="section-label">10 — Visual Proof</span>
+                <span class="section-title">Treated Samples</span>
+            </div>
+        </div>
+
+        <div class="main-content">
+            <p class="intro-text">
+                Visual demonstration of our treatment effectiveness across different wastewater types. Each sample shows the dramatic transformation from contaminated input to crystal clear output.
+            </p>
+
+            <div class="samples-grid">
+                <!-- Row 1 -->
+                <div class="sample-card">
+                    <div class="sample-image">
+                        <img src="domestic-sewage.png" alt="Domestic Sewage">
+                    </div>
+                    <div class="sample-info">
+                        <h3 class="sample-title">Domestic Sewage</h3>
+                    </div>
+                </div>
+
+                <div class="sample-card">
+                    <div class="sample-image">
+                        <img src="industrial-effluent.png" alt="Industrial Effluent">
+                    </div>
+                    <div class="sample-info">
+                        <h3 class="sample-title">Industrial Effluent</h3>
+                    </div>
+                </div>
+
+                <div class="sample-card">
+                    <div class="sample-image">
+                        <img src="refinery-effluent.png" alt="Refinery Effluent">
+                    </div>
+                    <div class="sample-info">
+                        <h3 class="sample-title">Refinery Effluent</h3>
+                    </div>
+                </div>
+
+                <div class="sample-card">
+                    <div class="sample-image">
+                        <img src="brewery-effluent.png" alt="Brewery Effluent">
+                    </div>
+                    <div class="sample-info">
+                        <h3 class="sample-title">Brewery Effluent</h3>
+                    </div>
+                </div>
+
+                <!-- Row 2 -->
+                <div class="sample-card">
+                    <div class="sample-image">
+                        <img src="rubber-effluent.png" alt="Rubber Effluent">
+                    </div>
+                    <div class="sample-info">
+                        <h3 class="sample-title">Rubber Effluent</h3>
+                    </div>
+                </div>
+
+                <div class="sample-card">
+                    <div class="sample-image">
+                        <img src="slaughter-house.png" alt="Slaughter House">
+                    </div>
+                    <div class="sample-info">
+                        <h3 class="sample-title">Slaughter House</h3>
+                    </div>
+                </div>
+
+                <div class="sample-card">
+                    <div class="sample-image">
+                        <img src="industrial-effluent.png" alt="Textile Effluent">
+                    </div>
+                    <div class="sample-info">
+                        <h3 class="sample-title">Textile Effluent</h3>
+                    </div>
+                </div>
+
+                <div class="sample-card">
+                    <div class="sample-image">
+                        <img src="domestic-sewage.png" alt="Hotel Greywater">
+                    </div>
+                    <div class="sample-info">
+                        <h3 class="sample-title">Hotel Greywater</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="bottom-accent"></div>
+        <div class="bottom-bar">
+            <span class="company-name">Al Ramrami Trading Enterprises</span>
+            <span class="page-number">11 <span>/ 12</span></span>
+        </div>
+    </div>
+</body>
+</html>

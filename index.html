@@ -1,0 +1,834 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Al Ramrami Trading Enterprises - Company Profile</title>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --deep-navy: #0D1B2A;
+            --ocean-blue: #1B4965;
+            --teal: #2E8B7B;
+            --emerald: #2A9D5C;
+            --gold: #D4A853;
+            --cream: #F8F6F2;
+            --white: #FFFFFF;
+        }
+
+        html, body {
+            height: 100%;
+            overflow: hidden;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background: var(--deep-navy);
+            color: var(--white);
+        }
+
+        /* Main Container */
+        .presentation {
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        /* Header Bar */
+        .header {
+            height: 60px;
+            min-height: 60px;
+            background: rgba(13, 27, 42, 0.98);
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 24px;
+            z-index: 100;
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .logo { height: 36px; width: auto; }
+
+        .slide-counter {
+            font-size: 14px;
+            color: rgba(255,255,255,0.6);
+            font-weight: 500;
+        }
+
+        .slide-counter span {
+            color: var(--gold);
+            font-weight: 600;
+        }
+
+        .header-controls {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .control-btn {
+            width: 40px;
+            height: 40px;
+            border: 1px solid rgba(255,255,255,0.2);
+            background: rgba(255,255,255,0.05);
+            color: rgba(255,255,255,0.7);
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+        }
+
+        .control-btn:hover {
+            background: rgba(255,255,255,0.1);
+            border-color: var(--gold);
+            color: var(--gold);
+        }
+
+        .control-btn svg {
+            width: 20px;
+            height: 20px;
+        }
+
+        /* Slide Viewport */
+        .slide-viewport {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 24px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Slides Container */
+        .slides-container {
+            position: relative;
+            width: 100%;
+            max-width: 1280px;
+            aspect-ratio: 16/9;
+            max-height: calc(100vh - 160px);
+        }
+
+        .slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.4s ease, transform 0.4s ease;
+            transform: scale(0.95);
+        }
+
+        .slide.active {
+            opacity: 1;
+            visibility: visible;
+            transform: scale(1);
+        }
+
+        .slide.prev {
+            transform: translateX(-100%) scale(0.9);
+        }
+
+        .slide.next {
+            transform: translateX(100%) scale(0.9);
+        }
+
+        .slide-frame {
+            width: 100%;
+            height: 100%;
+            border: none;
+            border-radius: 12px;
+            box-shadow: 0 25px 80px rgba(0,0,0,0.4);
+        }
+
+        /* Navigation Arrows */
+        .nav-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 56px;
+            height: 56px;
+            background: rgba(13, 27, 42, 0.9);
+            border: 1px solid rgba(255,255,255,0.15);
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: rgba(255,255,255,0.7);
+            transition: all 0.3s;
+            z-index: 10;
+        }
+
+        .nav-arrow:hover {
+            background: var(--gold);
+            color: var(--deep-navy);
+            border-color: var(--gold);
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        .nav-arrow:disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
+        }
+
+        .nav-arrow:disabled:hover {
+            background: rgba(13, 27, 42, 0.9);
+            color: rgba(255,255,255,0.7);
+            border-color: rgba(255,255,255,0.15);
+            transform: translateY(-50%) scale(1);
+        }
+
+        .nav-arrow svg {
+            width: 24px;
+            height: 24px;
+        }
+
+        .nav-arrow.prev { left: 24px; }
+        .nav-arrow.next { right: 24px; }
+
+        /* Bottom Bar */
+        .bottom-bar {
+            height: 80px;
+            min-height: 80px;
+            background: rgba(13, 27, 42, 0.98);
+            border-top: 1px solid rgba(255,255,255,0.1);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            padding: 0 24px;
+        }
+
+        /* Progress Bar */
+        .progress-bar {
+            width: 100%;
+            max-width: 600px;
+            height: 4px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 2px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--teal), var(--gold));
+            border-radius: 2px;
+            transition: width 0.3s ease;
+        }
+
+        /* Navigation Dots */
+        .nav-dots {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+        }
+
+        .nav-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.2);
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s;
+            padding: 0;
+        }
+
+        .nav-dot:hover {
+            background: rgba(255,255,255,0.4);
+            transform: scale(1.2);
+        }
+
+        .nav-dot.active {
+            background: var(--gold);
+            transform: scale(1.3);
+        }
+
+        /* Keyboard Hints */
+        .keyboard-hints {
+            position: fixed;
+            bottom: 100px;
+            right: 24px;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            opacity: 0;
+            transition: opacity 0.3s;
+            pointer-events: none;
+        }
+
+        .presentation:hover .keyboard-hints {
+            opacity: 1;
+        }
+
+        .hint {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 11px;
+            color: rgba(255,255,255,0.4);
+        }
+
+        .hint kbd {
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 4px;
+            padding: 2px 6px;
+            font-family: inherit;
+            font-size: 10px;
+        }
+
+        /* Fullscreen Mode */
+        .presentation.fullscreen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: 9999;
+            background: var(--deep-navy);
+        }
+
+        .presentation.fullscreen .header,
+        .presentation.fullscreen .bottom-bar {
+            position: fixed;
+            left: 0;
+            right: 0;
+            opacity: 0;
+            transition: opacity 0.3s;
+            z-index: 10001;
+        }
+
+        .presentation.fullscreen .header {
+            top: 0;
+        }
+
+        .presentation.fullscreen .bottom-bar {
+            bottom: 0;
+        }
+
+        .presentation.fullscreen:hover .header,
+        .presentation.fullscreen:hover .bottom-bar {
+            opacity: 1;
+        }
+
+        .presentation.fullscreen .slide-viewport {
+            position: fixed !important;
+            top: 0 !important;
+            left: 0 !important;
+            right: 0 !important;
+            bottom: 0 !important;
+            width: 100vw !important;
+            height: 100vh !important;
+            padding: 0 !important;
+            margin: 0 !important;
+            z-index: 10000;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            background: var(--deep-navy);
+        }
+
+        .presentation.fullscreen .slides-container {
+            position: relative !important;
+            margin: auto !important;
+            max-width: none !important;
+            max-height: none !important;
+            transform: none !important;
+            flex-shrink: 0;
+        }
+
+        /* Wide screens (wider than 16:9) - constrain by height */
+        @media screen and (min-aspect-ratio: 16/9) {
+            .presentation.fullscreen .slides-container {
+                height: 100vh !important;
+                width: calc(100vh * 16 / 9) !important;
+            }
+        }
+
+        /* Tall screens (taller than 16:9) - constrain by width */
+        @media screen and (max-aspect-ratio: 16/9) {
+            .presentation.fullscreen .slides-container {
+                width: 100vw !important;
+                height: calc(100vw * 9 / 16) !important;
+            }
+        }
+
+        .presentation.fullscreen .slide-frame {
+            border-radius: 0;
+        }
+
+        .presentation.fullscreen .nav-arrow {
+            z-index: 10002;
+        }
+
+        .presentation.fullscreen .nav-arrow.prev {
+            left: 40px;
+        }
+
+        .presentation.fullscreen .nav-arrow.next {
+            right: 40px;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .nav-arrow {
+                width: 44px;
+                height: 44px;
+            }
+            .nav-arrow.prev { left: 12px; }
+            .nav-arrow.next { right: 12px; }
+            .keyboard-hints { display: none; }
+        }
+
+        @media (max-width: 768px) {
+            .header {
+                height: 50px;
+                min-height: 50px;
+                padding: 0 16px;
+            }
+            .logo { height: 28px; }
+            .slide-counter { font-size: 12px; }
+            .control-btn { width: 36px; height: 36px; }
+
+            .slide-viewport { padding: 16px; }
+
+            .nav-arrow {
+                width: 40px;
+                height: 40px;
+            }
+            .nav-arrow.prev { left: 8px; }
+            .nav-arrow.next { right: 8px; }
+
+            .bottom-bar {
+                height: 70px;
+                min-height: 70px;
+            }
+
+            .nav-dot {
+                width: 8px;
+                height: 8px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .header-controls { gap: 8px; }
+            .control-btn { width: 32px; height: 32px; }
+            .control-btn svg { width: 16px; height: 16px; }
+
+            .nav-arrow {
+                width: 36px;
+                height: 36px;
+            }
+            .nav-arrow svg { width: 18px; height: 18px; }
+            .nav-arrow.prev { left: 4px; }
+            .nav-arrow.next { right: 4px; }
+        }
+
+        /* Touch swipe feedback */
+        .slide-viewport.swiping {
+            cursor: grabbing;
+        }
+    </style>
+</head>
+<body>
+    <div class="presentation" id="presentation">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-left">
+                <img src="alramirami-logo.png" alt="Al Ramrami" class="logo">
+                <div class="slide-counter">
+                    Slide <span id="currentSlide">1</span> of <span id="totalSlides">12</span>
+                </div>
+            </div>
+            <div class="header-controls">
+                <button class="control-btn" id="fullscreenBtn" title="Toggle Fullscreen (F)">
+                    <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path d="M4 8V4h4M20 8V4h-4M4 16v4h4M20 16v4h-4"/>
+                    </svg>
+                </button>
+            </div>
+        </header>
+
+        <!-- Slide Viewport -->
+        <div class="slide-viewport" id="slideViewport">
+            <!-- Previous Arrow -->
+            <button class="nav-arrow prev" id="prevBtn" title="Previous (Left Arrow)">
+                <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/>
+                </svg>
+            </button>
+
+            <!-- Slides Container -->
+            <div class="slides-container" id="slidesContainer">
+                <div class="slide" data-slide="1">
+                    <iframe src="slide01-title.html" class="slide-frame"></iframe>
+                </div>
+                <div class="slide" data-slide="2">
+                    <iframe src="slide02-about.html" class="slide-frame"></iframe>
+                </div>
+                <div class="slide" data-slide="3">
+                    <iframe src="slide03-services.html" class="slide-frame"></iframe>
+                </div>
+                <div class="slide" data-slide="4">
+                    <iframe src="slide04-mobile-eetp.html" class="slide-frame"></iframe>
+                </div>
+                <div class="slide" data-slide="5">
+                    <iframe src="slide05-electric-plants.html" class="slide-frame"></iframe>
+                </div>
+                <div class="slide" data-slide="6">
+                    <iframe src="slide06-liquid-incineration.html" class="slide-frame"></iframe>
+                </div>
+                <div class="slide" data-slide="7">
+                    <iframe src="slide07-technology.html" class="slide-frame"></iframe>
+                </div>
+                <div class="slide" data-slide="8">
+                    <iframe src="slide08-worlds-first.html" class="slide-frame"></iframe>
+                </div>
+                <div class="slide" data-slide="9">
+                    <iframe src="slide09-applications.html" class="slide-frame"></iframe>
+                </div>
+                <div class="slide" data-slide="10">
+                    <iframe src="slide10-results.html" class="slide-frame"></iframe>
+                </div>
+                <div class="slide" data-slide="11">
+                    <iframe src="slide11-samples.html" class="slide-frame"></iframe>
+                </div>
+                <div class="slide" data-slide="12">
+                    <iframe src="slide12-contact.html" class="slide-frame"></iframe>
+                </div>
+            </div>
+
+            <!-- Next Arrow -->
+            <button class="nav-arrow next" id="nextBtn" title="Next (Right Arrow)">
+                <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/>
+                </svg>
+            </button>
+        </div>
+
+        <!-- Bottom Bar -->
+        <div class="bottom-bar">
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill"></div>
+            </div>
+            <div class="nav-dots" id="navDots"></div>
+        </div>
+
+        <!-- Keyboard Hints -->
+        <div class="keyboard-hints">
+            <div class="hint"><kbd>&#8592;</kbd><kbd>&#8594;</kbd> Navigate</div>
+            <div class="hint"><kbd>F</kbd> Fullscreen</div>
+            <div class="hint"><kbd>Home</kbd> First slide</div>
+            <div class="hint"><kbd>End</kbd> Last slide</div>
+        </div>
+    </div>
+
+    <script>
+        // Presentation Controller
+        class PresentationController {
+            constructor() {
+                this.currentSlide = 1;
+                this.totalSlides = 12;
+                this.isFullscreen = false;
+                this.touchStartX = 0;
+                this.touchEndX = 0;
+
+                this.init();
+            }
+
+            init() {
+                this.cacheElements();
+                this.createDots();
+                this.bindEvents();
+                this.goToSlide(1);
+            }
+
+            cacheElements() {
+                this.presentation = document.getElementById('presentation');
+                this.slidesContainer = document.getElementById('slidesContainer');
+                this.slides = document.querySelectorAll('.slide');
+                this.prevBtn = document.getElementById('prevBtn');
+                this.nextBtn = document.getElementById('nextBtn');
+                this.currentSlideEl = document.getElementById('currentSlide');
+                this.totalSlidesEl = document.getElementById('totalSlides');
+                this.progressFill = document.getElementById('progressFill');
+                this.navDots = document.getElementById('navDots');
+                this.fullscreenBtn = document.getElementById('fullscreenBtn');
+                this.slideViewport = document.getElementById('slideViewport');
+            }
+
+            createDots() {
+                for (let i = 1; i <= this.totalSlides; i++) {
+                    const dot = document.createElement('button');
+                    dot.className = 'nav-dot';
+                    dot.dataset.slide = i;
+                    dot.title = `Slide ${i}`;
+                    dot.addEventListener('click', () => this.goToSlide(i));
+                    this.navDots.appendChild(dot);
+                }
+            }
+
+            bindEvents() {
+                // Arrow buttons
+                this.prevBtn.addEventListener('click', () => this.prev());
+                this.nextBtn.addEventListener('click', () => this.next());
+
+                // Keyboard navigation
+                document.addEventListener('keydown', (e) => this.handleKeydown(e));
+
+                // Fullscreen button
+                this.fullscreenBtn.addEventListener('click', () => this.toggleFullscreen());
+
+                // Touch/Swipe support
+                this.slideViewport.addEventListener('touchstart', (e) => this.handleTouchStart(e), { passive: true });
+                this.slideViewport.addEventListener('touchend', (e) => this.handleTouchEnd(e), { passive: true });
+
+                // Fullscreen change event (with browser prefixes)
+                document.addEventListener('fullscreenchange', () => this.onFullscreenChange());
+                document.addEventListener('webkitfullscreenchange', () => this.onFullscreenChange());
+                document.addEventListener('msfullscreenchange', () => this.onFullscreenChange());
+
+                // Click on slide area to advance (optional)
+                this.slidesContainer.addEventListener('click', (e) => {
+                    if (e.target === this.slidesContainer) {
+                        const rect = this.slidesContainer.getBoundingClientRect();
+                        const clickX = e.clientX - rect.left;
+                        if (clickX > rect.width / 2) {
+                            this.next();
+                        } else {
+                            this.prev();
+                        }
+                    }
+                });
+            }
+
+            handleKeydown(e) {
+                switch(e.key) {
+                    case 'ArrowRight':
+                    case 'ArrowDown':
+                    case ' ':
+                    case 'PageDown':
+                        e.preventDefault();
+                        this.next();
+                        break;
+                    case 'ArrowLeft':
+                    case 'ArrowUp':
+                    case 'PageUp':
+                        e.preventDefault();
+                        this.prev();
+                        break;
+                    case 'Home':
+                        e.preventDefault();
+                        this.goToSlide(1);
+                        break;
+                    case 'End':
+                        e.preventDefault();
+                        this.goToSlide(this.totalSlides);
+                        break;
+                    case 'f':
+                    case 'F':
+                        e.preventDefault();
+                        this.toggleFullscreen();
+                        break;
+                    case 'Escape':
+                        if (this.isFullscreen) {
+                            this.exitFullscreen();
+                        }
+                        break;
+                }
+            }
+
+            handleTouchStart(e) {
+                this.touchStartX = e.changedTouches[0].screenX;
+                this.slideViewport.classList.add('swiping');
+            }
+
+            handleTouchEnd(e) {
+                this.touchEndX = e.changedTouches[0].screenX;
+                this.slideViewport.classList.remove('swiping');
+                this.handleSwipe();
+            }
+
+            handleSwipe() {
+                const swipeThreshold = 50;
+                const diff = this.touchStartX - this.touchEndX;
+
+                if (Math.abs(diff) > swipeThreshold) {
+                    if (diff > 0) {
+                        this.next();
+                    } else {
+                        this.prev();
+                    }
+                }
+            }
+
+            goToSlide(n) {
+                if (n < 1 || n > this.totalSlides) return;
+
+                // Update slide classes
+                this.slides.forEach((slide, index) => {
+                    slide.classList.remove('active', 'prev', 'next');
+                    const slideNum = index + 1;
+
+                    if (slideNum === n) {
+                        slide.classList.add('active');
+                    } else if (slideNum < n) {
+                        slide.classList.add('prev');
+                    } else {
+                        slide.classList.add('next');
+                    }
+                });
+
+                this.currentSlide = n;
+                this.updateUI();
+            }
+
+            updateUI() {
+                // Update counter
+                this.currentSlideEl.textContent = this.currentSlide;
+
+                // Update progress bar
+                const progress = (this.currentSlide / this.totalSlides) * 100;
+                this.progressFill.style.width = `${progress}%`;
+
+                // Update dots
+                const dots = this.navDots.querySelectorAll('.nav-dot');
+                dots.forEach((dot, index) => {
+                    dot.classList.toggle('active', index + 1 === this.currentSlide);
+                });
+
+                // Update arrow buttons
+                this.prevBtn.disabled = this.currentSlide === 1;
+                this.nextBtn.disabled = this.currentSlide === this.totalSlides;
+            }
+
+            prev() {
+                if (this.currentSlide > 1) {
+                    this.goToSlide(this.currentSlide - 1);
+                }
+            }
+
+            next() {
+                if (this.currentSlide < this.totalSlides) {
+                    this.goToSlide(this.currentSlide + 1);
+                }
+            }
+
+            toggleFullscreen() {
+                if (!this.isFullscreen) {
+                    this.enterFullscreen();
+                } else {
+                    this.exitFullscreen();
+                }
+            }
+
+            enterFullscreen() {
+                const elem = document.documentElement;
+                if (elem.requestFullscreen) {
+                    elem.requestFullscreen();
+                } else if (elem.webkitRequestFullscreen) {
+                    elem.webkitRequestFullscreen();
+                } else if (elem.msRequestFullscreen) {
+                    elem.msRequestFullscreen();
+                }
+            }
+
+            exitFullscreen() {
+                if (document.exitFullscreen) {
+                    document.exitFullscreen();
+                } else if (document.webkitExitFullscreen) {
+                    document.webkitExitFullscreen();
+                } else if (document.msExitFullscreen) {
+                    document.msExitFullscreen();
+                }
+            }
+
+            onFullscreenChange() {
+                // Browser compatibility for fullscreen detection
+                this.isFullscreen = !!(document.fullscreenElement || document.webkitFullscreenElement || document.msFullscreenElement);
+                this.presentation.classList.toggle('fullscreen', this.isFullscreen);
+
+                // Update fullscreen button icon
+                const icon = this.isFullscreen
+                    ? '<path d="M8 4v4H4M16 4v4h4M8 20v-4H4M16 20v-4h4"/>'
+                    : '<path d="M4 8V4h4M20 8V4h-4M4 16v4h4M20 16v4h-4"/>';
+                this.fullscreenBtn.querySelector('svg').innerHTML = icon;
+
+                // Apply fullscreen centering via JavaScript (more reliable than CSS)
+                if (this.isFullscreen) {
+                    this.applyFullscreenStyles();
+                    this.resizeHandler = () => this.applyFullscreenStyles();
+                    window.addEventListener('resize', this.resizeHandler);
+                } else {
+                    this.removeFullscreenStyles();
+                    if (this.resizeHandler) {
+                        window.removeEventListener('resize', this.resizeHandler);
+                    }
+                }
+            }
+
+            applyFullscreenStyles() {
+                const vw = window.innerWidth;
+                const vh = window.innerHeight;
+                const slideRatio = 16 / 9;
+                const screenRatio = vw / vh;
+
+                let width, height, left, top;
+
+                if (screenRatio > slideRatio) {
+                    // Screen is wider than 16:9 - use full height
+                    height = vh;
+                    width = vh * slideRatio;
+                } else {
+                    // Screen is taller than 16:9 - use full width
+                    width = vw;
+                    height = vw / slideRatio;
+                }
+
+                left = (vw - width) / 2;
+                top = (vh - height) / 2;
+
+                // Apply inline styles directly to override everything
+                this.slidesContainer.style.cssText = `
+                    position: fixed !important;
+                    width: ${width}px !important;
+                    height: ${height}px !important;
+                    left: ${left}px !important;
+                    top: ${top}px !important;
+                    max-width: none !important;
+                    max-height: none !important;
+                    z-index: 10000 !important;
+                `;
+            }
+
+            removeFullscreenStyles() {
+                this.slidesContainer.style.cssText = '';
+            }
+        }
+
+        // Initialize presentation
+        document.addEventListener('DOMContentLoaded', () => {
+            new PresentationController();
+        });
+    </script>
+</body>
+</html>

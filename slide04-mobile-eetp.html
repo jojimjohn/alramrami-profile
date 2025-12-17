@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Al Ramrami - Mobile E-ETP</title>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --deep-navy: #0D1B2A;
+            --ocean-blue: #1B4965;
+            --teal: #2E8B7B;
+            --emerald: #2A9D5C;
+            --gold: #D4A853;
+            --cream: #F8F6F2;
+            --white: #FFFFFF;
+        }
+
+        .slide {
+            width: 1280px;
+            height: 720px;
+            background: linear-gradient(135deg, #0D2137 0%, #1B4965 50%, #1A3A4A 100%);
+            position: relative;
+            overflow: hidden;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        /* Top bar */
+        .top-bar {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 6px;
+            background: linear-gradient(90deg, var(--teal) 0%, var(--emerald) 50%, var(--gold) 100%);
+        }
+
+        /* Header */
+        .header {
+            padding: 36px 60px 0 60px;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+
+        .header-left {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .section-label {
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--gold);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .section-title {
+            font-family: 'DM Serif Display', serif;
+            font-size: 48px;
+            color: var(--white);
+        }
+
+        .section-title span {
+            color: var(--teal);
+        }
+
+        .header-right {
+            text-align: right;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 8px 16px;
+            background: var(--teal);
+            font-size: 11px;
+            font-weight: 700;
+            color: var(--white);
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        /* Main content */
+        .main-content {
+            padding: 24px 60px;
+            display: flex;
+            gap: 50px;
+        }
+
+        /* Left content */
+        .left-content {
+            flex: 1;
+        }
+
+        .intro-text {
+            font-size: 16px;
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.7;
+            margin-bottom: 32px;
+            max-width: 480px;
+        }
+
+        .features-list {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+            padding: 16px 20px;
+            background: rgba(255, 255, 255, 0.03);
+            border-left: 3px solid var(--teal);
+        }
+
+        .feature-item:nth-child(even) {
+            border-left-color: var(--gold);
+        }
+
+        .feature-icon {
+            width: 40px;
+            height: 40px;
+            background: rgba(46, 139, 123, 0.15);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .feature-item:nth-child(even) .feature-icon {
+            background: rgba(212, 168, 83, 0.15);
+        }
+
+        .feature-icon svg {
+            width: 20px;
+            height: 20px;
+            stroke: var(--teal);
+        }
+
+        .feature-item:nth-child(even) .feature-icon svg {
+            stroke: var(--gold);
+        }
+
+        .feature-text h4 {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--white);
+            margin-bottom: 4px;
+        }
+
+        .feature-text p {
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.5);
+            line-height: 1.5;
+        }
+
+        /* Right content - specs panel + image container */
+        .right-content {
+            width: 380px;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .specs-panel {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            padding: 18px 22px;
+        }
+
+        .specs-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 12px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .specs-icon {
+            width: 36px;
+            height: 36px;
+            background: var(--teal);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .specs-icon svg {
+            width: 18px;
+            height: 18px;
+            stroke: var(--white);
+        }
+
+        .specs-title {
+            font-family: 'DM Serif Display', serif;
+            font-size: 16px;
+            color: var(--white);
+        }
+
+        .spec-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        .spec-row:last-child {
+            border-bottom: none;
+        }
+
+        .spec-label {
+            font-size: 11px;
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .spec-value {
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--white);
+        }
+
+        .spec-value.highlight {
+            color: var(--teal);
+        }
+
+        /* Image container - below specs panel */
+        .image-container {
+            flex: 1;
+            min-height: 180px;
+            border-radius: 8px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        /* Bottom bar */
+        .bottom-bar {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 20px 60px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .company-name {
+            font-size: 12px;
+            font-weight: 500;
+            color: rgba(255, 255, 255, 0.4);
+            letter-spacing: 1px;
+        }
+
+        .page-number {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--white);
+        }
+
+        .page-number span {
+            color: rgba(255, 255, 255, 0.4);
+        }
+    </style>
+</head>
+<body>
+    <div class="slide">
+        <div class="top-bar"></div>
+
+        <div class="header">
+            <div class="header-left">
+                <span class="section-label">03 — Technology</span>
+                <h2 class="section-title">Mobile <span>E-ETP</span></h2>
+            </div>
+            <div class="header-right">
+                <span class="badge">Flagship Product</span>
+            </div>
+        </div>
+
+        <div class="main-content">
+            <div class="left-content">
+                <p class="intro-text">
+                    Our Mobile Electric Effluent Treatment Plant represents a breakthrough in portable water treatment technology. Designed for rapid deployment and maximum flexibility across diverse industrial applications.
+                </p>
+
+                <div class="features-list">
+                    <div class="feature-item">
+                        <div class="feature-icon">
+                            <svg fill="none" viewBox="0 0 24 24" stroke-width="1.5">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 18.75a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h6m-9 0H3.375a1.125 1.125 0 01-1.125-1.125V14.25m17.25 4.5a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h1.125c.621 0 1.129-.504 1.09-1.124a17.902 17.902 0 00-3.213-9.193 2.056 2.056 0 00-1.58-.86H14.25M16.5 18.75h-2.25m0-11.177v-.958c0-.568-.422-1.048-.987-1.106a48.554 48.554 0 00-10.026 0 1.106 1.106 0 00-.987 1.106v7.635m12-6.677v6.677m0 4.5v-4.5m0 0h-12" />
+                            </svg>
+                        </div>
+                        <div class="feature-text">
+                            <h4>Rapid Deployment</h4>
+                            <p>Fully mobile unit can be transported and deployed within hours to any location</p>
+                        </div>
+                    </div>
+
+                    <div class="feature-item">
+                        <div class="feature-icon">
+                            <svg fill="none" viewBox="0 0 24 24" stroke-width="1.5">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z" />
+                            </svg>
+                        </div>
+                        <div class="feature-text">
+                            <h4>Electric Operation</h4>
+                            <p>Clean, efficient electric-powered treatment with minimal environmental footprint</p>
+                        </div>
+                    </div>
+
+                    <div class="feature-item">
+                        <div class="feature-icon">
+                            <svg fill="none" viewBox="0 0 24 24" stroke-width="1.5">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M9.75 3.104v5.714a2.25 2.25 0 01-.659 1.591L5 14.5M9.75 3.104c-.251.023-.501.05-.75.082m.75-.082a24.301 24.301 0 014.5 0m0 0v5.714c0 .597.237 1.17.659 1.591L19.8 15.3M14.25 3.104c.251.023.501.05.75.082M19.8 15.3l-1.57.393A9.065 9.065 0 0112 15a9.065 9.065 0 00-6.23-.693L5 14.5m14.8.8l1.402 1.402c1.232 1.232.65 3.318-1.067 3.611A48.309 48.309 0 0112 21c-2.773 0-5.491-.235-8.135-.687-1.718-.293-2.3-2.379-1.067-3.61L5 14.5" />
+                            </svg>
+                        </div>
+                        <div class="feature-text">
+                            <h4>Nano-Bubble Technology</h4>
+                            <p>Advanced nano-engineered bubble system for superior treatment efficiency</p>
+                        </div>
+                    </div>
+
+                    <div class="feature-item">
+                        <div class="feature-icon">
+                            <svg fill="none" viewBox="0 0 24 24" stroke-width="1.5">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12a7.5 7.5 0 0015 0m-15 0a7.5 7.5 0 1115 0m-15 0H3m16.5 0H21m-1.5 0H12m-8.457 3.077l1.41-.513m14.095-5.13l1.41-.513M5.106 17.785l1.15-.964m11.49-9.642l1.149-.964M7.501 19.795l.75-1.3m7.5-12.99l.75-1.3m-6.063 16.658l.26-1.477m2.605-14.772l.26-1.477m0 17.726l-.26-1.477M10.698 4.614l-.26-1.477M16.5 19.794l-.75-1.299M7.5 4.205L12 12m6.894 5.785l-1.149-.964M6.256 7.178l-1.15-.964m15.352 8.864l-1.41-.513M4.954 9.435l-1.41-.514M12.002 12l-3.75 6.495" />
+                            </svg>
+                        </div>
+                        <div class="feature-text">
+                            <h4>Multi-Industry Application</h4>
+                            <p>Adaptable to 16+ industries from domestic sewage to petrochemical</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="right-content">
+                <div class="specs-panel">
+                    <div class="specs-header">
+                        <div class="specs-icon">
+                            <svg fill="none" viewBox="0 0 24 24" stroke-width="1.5">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M9.594 3.94c.09-.542.56-.94 1.11-.94h2.593c.55 0 1.02.398 1.11.94l.213 1.281c.063.374.313.686.645.87.074.04.147.083.22.127.324.196.72.257 1.075.124l1.217-.456a1.125 1.125 0 011.37.49l1.296 2.247a1.125 1.125 0 01-.26 1.431l-1.003.827c-.293.24-.438.613-.431.992a6.759 6.759 0 010 .255c-.007.378.138.75.43.99l1.005.828c.424.35.534.954.26 1.43l-1.298 2.247a1.125 1.125 0 01-1.369.491l-1.217-.456c-.355-.133-.75-.072-1.076.124a6.57 6.57 0 01-.22.128c-.331.183-.581.495-.644.869l-.213 1.28c-.09.543-.56.941-1.11.941h-2.594c-.55 0-1.02-.398-1.11-.94l-.213-1.281c-.062-.374-.312-.686-.644-.87a6.52 6.52 0 01-.22-.127c-.325-.196-.72-.257-1.076-.124l-1.217.456a1.125 1.125 0 01-1.369-.49l-1.297-2.247a1.125 1.125 0 01.26-1.431l1.004-.827c.292-.24.437-.613.43-.992a6.932 6.932 0 010-.255c.007-.378-.138-.75-.43-.99l-1.004-.828a1.125 1.125 0 01-.26-1.43l1.297-2.247a1.125 1.125 0 011.37-.491l1.216.456c.356.133.751.072 1.076-.124.072-.044.146-.087.22-.128.332-.183.582-.495.644-.869l.214-1.281z" />
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                            </svg>
+                        </div>
+                        <span class="specs-title">Specifications</span>
+                    </div>
+
+                    <div class="spec-row">
+                        <span class="spec-label">Capacity Range</span>
+                        <span class="spec-value highlight">5 – 500+ KLD</span>
+                    </div>
+                    <div class="spec-row">
+                        <span class="spec-label">Power Source</span>
+                        <span class="spec-value">Electric</span>
+                    </div>
+                    <div class="spec-row">
+                        <span class="spec-label">Mobility</span>
+                        <span class="spec-value">Fully Mobile</span>
+                    </div>
+                    <div class="spec-row">
+                        <span class="spec-label">Setup Time</span>
+                        <span class="spec-value">Same Day</span>
+                    </div>
+                    <div class="spec-row">
+                        <span class="spec-label">BOD Reduction</span>
+                        <span class="spec-value highlight">Up to 95%</span>
+                    </div>
+                    <div class="spec-row">
+                        <span class="spec-label">COD Reduction</span>
+                        <span class="spec-value highlight">Up to 90%</span>
+                    </div>
+                </div>
+
+                <!-- Vehicle Image -->
+                <div class="image-container">
+                    <img src="etp-vehichle.png" alt="Mobile E-ETP Vehicle">
+                </div>
+            </div>
+        </div>
+
+        <div class="bottom-bar">
+            <span class="company-name">Al Ramrami Trading Enterprises</span>
+            <span class="page-number">04 <span>/ 12</span></span>
+        </div>
+    </div>
+</body>
+</html>
