@@ -7,6 +7,7 @@
     <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
+        html, body { width: 100%; height: 100%; overflow: hidden; background: #0D1B2A; }
         :root {
             --deep-navy: #0D1B2A;
             --ocean-blue: #1B4965;
@@ -20,9 +21,13 @@
             width: 1280px;
             height: 720px;
             background: linear-gradient(135deg, #0D2137 0%, #1B4965 50%, #1A3A4A 100%);
-            position: relative;
+            position: absolute;
+            top: 50%;
+            left: 50%;
             overflow: hidden;
             font-family: 'Plus Jakarta Sans', sans-serif;
+            transform-origin: center center;
+            transform: translate(-50%, -50%);
         }
         .accent-bar {
             position: absolute;
@@ -245,5 +250,16 @@
             <span class="page-number">06 <span>/ 12</span></span>
         </div>
     </div>
+    <script>
+        function scaleSlide() {
+            const slide = document.querySelector('.slide');
+            const vw = window.innerWidth;
+            const vh = window.innerHeight;
+            const scale = Math.min(vw / 1280, vh / 720);
+            slide.style.transform = `translate(-50%, -50%) scale(${scale})`;
+        }
+        scaleSlide();
+        window.addEventListener('resize', scaleSlide);
+    </script>
 </body>
 </html>
